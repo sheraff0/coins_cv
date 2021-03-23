@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+  #drop-area {
+    border: 1px dotted;
+    min-height: 20vh;
+    width: 50vw;
+  }
+  #preview img {
+    height: 70vh;
+  }
+</style>
+{% endblock css %}
+
+{% block content %}
+<form action="" method="" enctype="multipart/form-data" id="upload-form" onsubmit="submitForm(event)">
+  {% csrf_token %}
+  <div id="drop-area"
+    ondrop="dropHandler(event);" ondragover="dragoverHandler(event);"
+  >
+    <label for="input__file">Перетащите картинку или выберите файл</label>
+    <input type="file" name="image" id="input__file" accept="image/*" onchange="previewFiles(this.files)">
+    <div id="preview"></div>
+  </div>
+  <button type="submit">Обработать</button>
+</form>
+<div id="results"></div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/dropzone.js' %}"></script>
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock javascript %}
