@@ -19,7 +19,12 @@ class ProcessImageView(FormMixin, View):
             if form.proceed(request):
                 return JsonResponse({
                     'message': 'ok',
-                    'results': {'definition': '700x400'}
+                    'results': {
+                        'dimensions': form.dimensions,
+                        'avg_color': form.avg_color,
+                        'coins': form.coins,
+                        'image_base64': form.image_base64,
+                    }
                 })
         errors = {error[0]: error[1][0].message for error in form.errors.as_data().items()}
         return JsonResponse({
