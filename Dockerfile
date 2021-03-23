@@ -6,7 +6,7 @@ COPY requirements.txt /code/
 
 # OpenCV required package
 RUN apt-get update
-RUN apt-get install -y libgl1-mesa-dev
+RUN apt-get install -y libgl1-mesa-dev libglib2.0-0
 
 RUN pip install -r requirements.txt
 COPY . /code/
